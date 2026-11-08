@@ -8,616 +8,58 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
-            --primary-color: #6a0572; /* Deep Purple */
-            --secondary-color: #8e2de2; /* Lighter Purple */
-            --accent-color: #00bcd4; /* Cyan */
+            --primary-color: #6a0572;
+            --secondary-color: #8e2de2;
+            --accent-color: #00bcd4;
             --text-color: #333;
             --light-text-color: #f4f4f4;
             --bg-light: #fdfdff;
-            --bg-dark: #2c3e50; /* Dark Blue Gray */
+            --bg-dark: #2c3e50;
             --card-bg: #ffffff;
             --border-color: #e0e0e0;
             --shadow-light: rgba(0, 0, 0, 0.08);
             --shadow-medium: rgba(0, 0, 0, 0.15);
             --transition-speed: 0.3s;
         }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Tajawal', sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-light);
-            direction: rtl;
-            text-align: right;
-        }
-
-        a {
-            text-decoration: none;
-            color: var(--primary-color);
-            transition: color var(--transition-speed) ease;
-        }
-
-        a:hover {
-            color: var(--secondary-color);
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-
-        /* Header & Navigation */
-        .header {
-            background-color: var(--card-bg);
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px var(--shadow-light);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            padding: 0.5rem 0;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .nav-links li a {
-            color: var(--text-color);
-            font-weight: 400;
-            padding: 0.5rem 0;
-            position: relative;
-        }
-
-        .nav-links li a::after {
-            content: '';
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--primary-color);
-            transition: width var(--transition-speed) ease;
-        }
-
-        .nav-links li a:hover::after {
-            width: 100%;
-            left: 0;
-            right: auto;
-        }
-
-        .auth-buttons {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .btn {
-            padding: 0.8rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all var(--transition-speed) ease;
-            text-align: center;
-            border: none;
-        }
-
-        .btn-primary {
-            background-color: var(--primary-color);
-            color: var(--light-text-color);
-            box-shadow: 0 4px 15px rgba(106, 5, 114, 0.3);
-        }
-
-        .btn-primary:hover {
-            background-color: var(--secondary-color);
-            box-shadow: 0 6px 20px rgba(142, 45, 226, 0.4);
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-        }
-
-        .btn-secondary:hover {
-            background-color: var(--primary-color);
-            color: var(--light-text-color);
-            border-color: var(--primary-color);
-            transform: translateY(-2px);
-        }
-
-        .menu-toggle {
-            display: none;
-            font-size: 1.8rem;
-            color: var(--primary-color);
-            cursor: pointer;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            color: var(--light-text-color);
-            padding: 6rem 0;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 70vh;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
-            animation: rotateBg 20s linear infinite;
-        }
-
-        @keyframes rotateBg {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .hero-content {
-            z-index: 1;
-            max-width: 800px;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-            font-weight: 700;
-        }
-
-        .hero p {
-            font-size: 1.4rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.9;
-            font-weight: 300;
-        }
-
-        .hero .btn {
-            font-size: 1.2rem;
-            padding: 1rem 2.5rem;
-        }
-
-        /* Sections General */
-        section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: var(--primary-color);
-            position: relative;
-            padding-bottom: 15px;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 50%;
-            transform: translateX(50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--accent-color);
-            border-radius: 2px;
-        }
-
-        /* Features Section */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 2.5rem;
-            box-shadow: 0 5px 20px var(--shadow-light);
-            text-align: center;
-            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px var(--shadow-medium);
-        }
-
-        .feature-card .icon {
-            font-size: 3.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-        }
-
-        .feature-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--text-color);
-        }
-
-        .feature-card p {
-            font-size: 1rem;
-            color: #666;
-            margin-bottom: 1.5rem;
-        }
-
-        .feature-card .btn {
-            font-size: 0.9rem;
-            padding: 0.7rem 1.2rem;
-        }
-
-        /* Workflow Section */
-        .workflow {
-            background-color: var(--bg-light);
-            padding: 5rem 0;
-        }
-
-        .workflow-steps {
-            display: flex;
-            flex-direction: column;
-            gap: 3rem;
-            position: relative;
-        }
-
-        .workflow-steps::before {
-            content: '';
-            position: absolute;
-            right: 50%;
-            transform: translateX(50%);
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background-color: var(--border-color);
-            z-index: 0;
-        }
-
-        .workflow-step {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end; /* Align to the right for RTL */
-            position: relative;
-            padding-right: 70px; /* Space for the circle */
-            text-align: right;
-        }
-
-        .workflow-step:nth-child(even) {
-            justify-content: flex-start; /* Align to the left for even steps */
-            padding-right: 0;
-            padding-left: 70px; /* Space for the circle */
-            text-align: left;
-        }
-
-        .workflow-step-content {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px var(--shadow-light);
-            max-width: 45%;
-            width: 100%;
-            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-        }
-
-        .workflow-step-content:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px var(--shadow-medium);
-        }
-
-        .workflow-step .step-number {
-            position: absolute;
-            right: -25px; /* Position the circle */
-            top: 50%;
-            transform: translateY(-50%);
-            width: 50px;
-            height: 50px;
-            background-color: var(--accent-color);
-            color: var(--light-text-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 700;
-            z-index: 1;
-            box-shadow: 0 0 0 5px var(--bg-light);
-        }
-
-        .workflow-step:nth-child(even) .step-number {
-            right: auto;
-            left: -25px; /* Position the circle */
-        }
-
-        .workflow-step h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.8rem;
-            color: var(--primary-color);
-        }
-
-        .workflow-step p {
-            font-size: 1rem;
-            color: #666;
-        }
-
-        /* Value Adds Section */
-        .value-adds {
-            background-color: var(--bg-light);
-        }
-
-        .value-adds-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .value-card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 2.5rem;
-            box-shadow: 0 5px 20px var(--shadow-light);
-            text-align: center;
-            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-        }
-
-        .value-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 30px var(--shadow-medium);
-        }
-
-        .value-card .icon {
-            font-size: 3.5rem;
-            color: var(--accent-color);
-            margin-bottom: 1.5rem;
-        }
-
-        .value-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--text-color);
-        }
-
-        .value-card p {
-            font-size: 1rem;
-            color: #666;
-        }
-
-        /* Footer */
-        .footer {
-            background-color: var(--bg-dark);
-            color: var(--light-text-color);
-            padding: 4rem 0;
-            text-align: center;
-        }
-
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .footer .logo {
-            color: var(--accent-color);
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
-        }
-
-        .footer-links {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-links li a {
-            color: var(--light-text-color);
-            opacity: 0.8;
-            font-weight: 300;
-        }
-
-        .footer-links li a:hover {
-            opacity: 1;
-            color: var(--accent-color);
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .social-icons a {
-            color: var(--light-text-color);
-            font-size: 1.5rem;
-            opacity: 0.7;
-        }
-
-        .social-icons a:hover {
-            opacity: 1;
-            color: var(--accent-color);
-            transform: scale(1.1);
-        }
-
-        .footer p {
-            font-size: 0.9rem;
-            opacity: 0.7;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-            .hero p {
-                font-size: 1.2rem;
-            }
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                background-color: var(--card-bg);
-                position: absolute;
-                top: 100%;
-                left: 0;
-                padding: 1rem 0;
-                box-shadow: 0 5px 10px var(--shadow-light);
-                text-align: center;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-links li {
-                margin: 0.5rem 0;
-            }
-
-            .auth-buttons {
-                display: none;
-                width: 100%;
-                flex-direction: column;
-                gap: 0.5rem;
-                padding: 1rem 15px;
-                background-color: var(--card-bg);
-            }
-
-            .auth-buttons.active {
-                display: flex;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            .navbar {
-                flex-wrap: nowrap;
-            }
-
-            .workflow-steps::before {
-                right: 50%;
-                transform: translateX(50%);
-            }
-
-            .workflow-step,
-            .workflow-step:nth-child(even) {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                padding: 0;
-            }
-
-            .workflow-step-content {
-                max-width: 90%;
-            }
-
-            .workflow-step .step-number {
-                position: static;
-                transform: none;
-                margin-bottom: 1.5rem;
-                box-shadow: none;
-            }
-
-            .workflow-step:nth-child(even) .step-number {
-                 position: static;
-                 transform: none;
-                 margin-bottom: 1.5rem;
-                 box-shadow: none;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero {
-                padding: 4rem 0;
-                min-height: 60vh;
-            }
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            .hero p {
-                font-size: 1rem;
-            }
-            .hero .btn {
-                font-size: 1rem;
-                padding: 0.8rem 2rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .features-grid, .value-adds-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .feature-card, .value-card {
-                padding: 2rem;
-            }
-
-            .workflow-step-content {
-                max-width: 100%;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .logo {
-                font-size: 1.5rem;
-            }
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-            .hero p {
-                font-size: 0.9rem;
-            }
-            .hero .btn {
-                padding: 0.7rem 1.5rem;
-            }
-            .section-title {
-                font-size: 1.8rem;
-            }
-            .feature-card h3, .value-card h3 {
-                font-size: 1.5rem;
-            }
-            .btn {
-                width: 100%;
-            }
-            .auth-buttons {
-                align-items: center;
-            }
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Tajawal', sans-serif; line-height: 1.6; color: var(--text-color); background-color: var(--bg-light); direction: rtl; text-align: right; scroll-behavior: smooth; }
+        a { text-decoration: none; color: var(--primary-color); transition: color var(--transition-speed) ease; }
+        a:hover { color: var(--secondary-color); }
+        ul { list-style: none; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+        .header { background-color: var(--card-bg); padding: 1rem 0; box-shadow: 0 2px 10px var(--shadow-light); position: sticky; top: 0; z-index: 1000; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .logo { font-size: 1.8rem; font-weight: 700; color: var(--primary-color); padding: 0.5rem 0; }
+        .nav-links { display: flex; gap: 1.5rem; }
+        .nav-links li a { color: var(--text-color); font-weight: 400; padding: 0.5rem 0; position: relative; }
+        .auth-buttons { display: flex; gap: 1rem; }
+        .btn { padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 700; cursor: pointer; transition: all var(--transition-speed) ease; text-align: center; border: none; display: inline-block; }
+        .btn-primary { background-color: var(--primary-color); color: var(--light-text-color); box-shadow: 0 4px 15px rgba(106, 5, 114, 0.3); }
+        .btn-primary:hover { background-color: var(--secondary-color); transform: translateY(-2px); color: var(--light-text-color); }
+        .btn-secondary { background-color: transparent; color: var(--primary-color); border: 2px solid var(--primary-color); }
+        .btn-secondary:hover { background-color: var(--primary-color); color: var(--light-text-color); transform: translateY(-2px); }
+        .menu-toggle { display: none; font-size: 1.8rem; color: var(--primary-color); cursor: pointer; }
+        .hero { background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%); color: var(--light-text-color); padding: 6rem 0; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 70vh; position: relative; overflow: hidden; }
+        .hero-content { z-index: 1; max-width: 800px; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 1.5rem; line-height: 1.2; font-weight: 700; }
+        .hero p { font-size: 1.4rem; margin-bottom: 2.5rem; opacity: 0.9; font-weight: 300; }
+        section { padding: 5rem 0; }
+        .section-title { font-size: 2.5rem; text-align: center; margin-bottom: 3rem; color: var(--primary-color); position: relative; padding-bottom: 15px; }
+        .section-title::after { content: ''; position: absolute; bottom: 0; right: 50%; transform: translateX(50%); width: 80px; height: 4px; background-color: var(--accent-color); border-radius: 2px; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .feature-card { background-color: var(--card-bg); border-radius: 12px; padding: 2.5rem; box-shadow: 0 5px 20px var(--shadow-light); text-align: center; transition: transform var(--transition-speed) ease; }
+        .feature-card:hover { transform: translateY(-10px); }
+        .feature-card .icon { font-size: 3.5rem; color: var(--primary-color); margin-bottom: 1.5rem; }
+        .workflow { background-color: var(--bg-light); padding: 5rem 0; }
+        .workflow-steps { display: flex; flex-direction: column; gap: 3rem; }
+        .workflow-step { display: flex; align-items: center; justify-content: flex-end; position: relative; padding-right: 70px; text-align: right; }
+        .workflow-step-content { background-color: var(--card-bg); border-radius: 12px; padding: 2rem; box-shadow: 0 5px 15px var(--shadow-light); width: 100%; max-width: 45%; }
+        .footer { background-color: var(--bg-dark); color: var(--light-text-color); padding: 4rem 0; text-align: center; }
+        .footer-content { display: flex; flex-direction: column; align-items: center; gap: 2rem; }
+        .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; }
+        .footer-links li a { color: var(--light-text-color); opacity: 0.8; }
+        .social-icons { display: flex; gap: 1.5rem; }
+        .social-icons a { color: var(--light-text-color); font-size: 1.5rem; }
     </style>
 </head>
 <body>
@@ -625,165 +67,54 @@
         <div class="container">
             <nav class="navbar">
                 <a href="#" class="logo">اي شيء</a>
-                <div class="menu-toggle" id="mobile-menu">
-                    <i class="fas fa-bars"></i>
-                </div>
+                <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
                 <ul class="nav-links" id="nav-menu">
                     <li><a href="#features">بنك الأوامر</a></li>
-                    <li><a href="#features">المشاريع</a></li>
+                    <li><a href="#workflow">المشاريع</a></li>
                     <li><a href="#features">المساعد</a></li>
                     <li><a href="#community">المجتمع</a></li>
                 </ul>
                 <div class="auth-buttons" id="auth-btns">
-                    <a href="#" class="btn btn-secondary">تسجيل الدخول</a>
-                    <a href="#" class="btn btn-primary">ابدأ مجاناً</a>
+                    <a href="#features" class="btn btn-secondary">تسجيل الدخول</a>
+                    <a href="#features" class="btn btn-primary">ابدأ مجاناً</a>
                 </div>
             </nav>
         </div>
     </header>
-
     <main>
         <section class="hero">
             <div class="container hero-content">
                 <h1>منصتك المتكاملة لإدارة أوامر ومشاريع الذكاء الاصطناعي</h1>
                 <p>ابتكر، اختبر، وشارك أوامرك الاحترافية وادمجها في مشاريع عملية بسلاسة وفعالية.</p>
-                <a href="#" class="btn btn-primary">ابدأ الآن مجاناً</a>
+                <a href="#features" class="btn btn-primary">ابدأ الآن مجاناً</a>
             </div>
         </section>
-
         <section id="features" class="features">
             <div class="container">
                 <h2 class="section-title">ميزاتنا الأساسية</h2>
                 <div class="features-grid">
-                    <div class="feature-card">
-                        <i class="fas fa-brain icon"></i>
-                        <h3>بنك الأوامر الذكي</h3>
-                        <p>مكتبة ضخمة من الأوامر الاحترافية المصنفة، مع تقييمات ونتائج متوقعة وقوالب مرنة قابلة للتعديل.</p>
-                        <a href="#" class="btn btn-primary">تصفح الأوامر</a>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-project-diagram icon"></i>
-                        <h3>مساحة عمل المشاريع</h3>
-                        <p>بيئة مخصصة لتنظيم العمل تتيح لك إنشاء مشاريع متكاملة وربط أوامر متعددة مترابطة فيها.</p>
-                        <a href="#" class="btn btn-primary">إنشاء مشروع جديد</a>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-robot icon"></i>
-                        <h3>مساعد هندسة الأوامر</h3>
-                        <p>أداة تفاعلية ترشدك خطوة بخطوة لصياغة أمر دقيق ومحترف عبر تحديد الأدوار، السياق، والمهمة.</p>
-                        <a href="#" class="btn btn-primary">ابدأ الصياغة</a>
-                    </div>
-                    <div class="feature-card" id="community">
-                        <i class="fas fa-users icon"></i>
-                        <h3>المجتمع والمشاركة</h3>
-                        <p>تواصل مع الخبراء وشارك إبداعاتك، واستكشف تجارب الآخرين لتعميق الفائدة وتبادل المعرفة.</p>
-                        <a href="#" class="btn btn-primary">انضم للمجتمع</a>
-                    </div>
+                    <div class="feature-card"><i class="fas fa-brain icon"></i><h3>بنك الأوامر الذكي</h3><p>مكتبة ضخمة من الأوامر الاحترافية المصنفة.</p><a href="#features" class="btn btn-primary">تصفح الأوامر</a></div>
+                    <div class="feature-card"><i class="fas fa-project-diagram icon"></i><h3>مساحة عمل المشاريع</h3><p>بيئة مخصصة لتنظيم العمل والمشاريع.</p><a href="#workflow" class="btn btn-primary">إنشاء مشروع</a></div>
+                    <div class="feature-card"><i class="fas fa-robot icon"></i><h3>مساعد هندسة الأوامر</h3><p>صياغة أمر دقيق ومحترف.</p><a href="#features" class="btn btn-primary">ابدأ الصياغة</a></div>
+                    <div class="feature-card" id="community"><i class="fas fa-users icon"></i><h3>المجتمع والمشاركة</h3><p>تواصل مع الخبراء وشارك إبداعاتك.</p><a href="#features" class="btn btn-primary">انضم للمجتمع</a></div>
                 </div>
             </div>
         </section>
-
         <section id="workflow" class="workflow">
             <div class="container">
                 <h2 class="section-title">كيف تعمل منصة اي شيء؟</h2>
                 <div class="workflow-steps">
-                    <div class="workflow-step">
-                        <div class="step-number">1</div>
-                        <div class="workflow-step-content">
-                            <h3>بدء المشروع</h3>
-                            <p>سجل دخولك وأنشئ مشروعاً جديداً محدداً هدفه العام، مثل إطلاق حملة تسويقية أو كتابة محتوى.</p>
-                        </div>
-                    </div>
-                    <div class="workflow-step">
-                        <div class="step-number">2</div>
-                        <div class="workflow-step-content">
-                            <h3>اختيار الأوامر</h3>
-                            <p>يقدم الموقع سلسلة مقترحة ومنسقة من الأوامر الجاهزة التي تناسب طبيعة وهدف مشروعك.</p>
-                        </div>
-                    </div>
-                    <div class="workflow-step">
-                        <div class="step-number">3</div>
-                        <div class="workflow-step-content">
-                            <h3>التعديل والتجربة</h3>
-                            <p>ادخل إلى الأمر المطلوب، عبئ متغيراته الخاصة، ثم انسخه أو شغله مباشرة عبر واجهة مرتبطة بنماذج الذكاء الاصطناعي.</p>
-                        </div>
-                    </div>
-                    <div class="workflow-step">
-                        <div class="step-number">4</div>
-                        <div class="workflow-step-content">
-                            <h3>الحفظ والتوثيق</h3>
-                            <p>تُحفظ المخرجات تلقائياً داخل مساحة المشروع لضمان سهولة الرجوع إليها وتعديلها لاحقاً.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="value-adds" class="value-adds">
-            <div class="container">
-                <h2 class="section-title">أفكار إضافية لرفع القيمة</h2>
-                <div class="value-adds-grid">
-                    <div class="value-card">
-                        <i class="fas fa-balance-scale icon"></i>
-                        <h3>مقارنة الأوامر</h3>
-                        <p>أداة لاختبار أمرين مختلفين لنفس المهمة جنباً إلى جنب لتحديد الأجود والأكثر فعالية.</p>
-                    </div>
-                    <div class="value-card">
-                        <i class="fas fa-history icon"></i>
-                        <h3>سجل الإصدارات</h3>
-                        <p>تتبع تاريخ التعديلات على الأوامر للوصول دائماً إلى النسخة المثالية والفعالة لكل مهمة.</p>
-                    </div>
+                    <div class="workflow-step"><div class="workflow-step-content"><h3>بدء المشروع</h3><p>أنشئ مشروعاً جديداً وحدد هدفه.</p></div></div>
                 </div>
             </div>
         </section>
     </main>
-
     <footer class="footer">
         <div class="container footer-content">
             <a href="#" class="logo">اي شيء</a>
-            <ul class="footer-links">
-                <li><a href="#features">بنك الأوامر</a></li>
-                <li><a href="#features">المشاريع</a></li>
-                <li><a href="#features">المساعد</a></li>
-                <li><a href="#community">المجتمع</a></li>
-                <li><a href="#">سياسة الخصوصية</a></li>
-                <li><a href="#">شروط الخدمة</a></li>
-            </ul>
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-            </div>
-            <p>&copy; 2023 اي شيء. جميع الحقوق محفوظة.</p>
+            <p>&copy; 2026 اي شيء. جميع الحقوق محفوظة.</p>
         </div>
     </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const mobileMenu = document.getElementById('mobile-menu');
-            const navMenu = document.getElementById('nav-menu');
-            const authBtns = document.getElementById('auth-btns');
-
-            mobileMenu.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-                authBtns.classList.toggle('active');
-                mobileMenu.querySelector('i').classList.toggle('fa-bars');
-                mobileMenu.querySelector('i').classList.toggle('fa-times');
-            });
-
-            // Close menu when a link is clicked (for mobile)
-            document.querySelectorAll('#nav-menu a').forEach(link => {
-                link.addEventListener('click', () => {
-                    if (navMenu.classList.contains('active')) {
-                        navMenu.classList.remove('active');
-                        authBtns.classList.remove('active');
-                        mobileMenu.querySelector('i').classList.remove('fa-times');
-                        mobileMenu.querySelector('i').classList.add('fa-bars');
-                    }
-                });
-            });
-        });
-    </script>
 </body>
-</html>
+                                                                                                                                                                 </html>
+                                                                                                                                                                 
