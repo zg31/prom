@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوت كود - منصة توليد الأكواد التفاعلية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --accent-color: #28a745;
+            --background-light: #f8f9fa;
+            --text-dark: #343a40;
+            --text-light: #ffffff;
+            --border-color: #dee2e6;
+            --shadow-light: rgba(0, 0, 0, 0.08);
+            --shadow-medium: rgba(0, 0, 0, 0.15);
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--background-light);
+            direction: rtl;
+            text-align: right;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: color var(--transition-speed);
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--text-light);
+            box-shadow: 0 2px 10px var(--shadow-light);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            font-weight: 600;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width var(--transition-speed);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+            left: 0;
+            right: auto;
+        }
+
+        .burger-menu {
+            font-size: 1.8rem;
+            cursor: pointer;
+            display: none;
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #0056b3 100%);
+            color: var(--text-light);
+            text-align: center;
+            padding: 100px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 70vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://source.unsplash.com/random/1920x1080/?code,programming') no-repeat center center/cover;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .hero-section > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-section h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            max-width: 900px;
+        }
+
+        .hero-section p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            max-width: 800px;
+            line-height: 1.8;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+            border: none;
+            text-align: center;
+        }
+
+        .primary-btn {
+            background-color: var(--accent-color);
+            color: var(--text-light);
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+        }
+
+        .primary-btn:hover {
+            background-color: #218838;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(40, 167, 69, 0.6);
+        }
+
+        .secondary-btn {
+            background-color: var(--secondary-color);
+            color: var(--text-light);
+            box-shadow: 0 5px 15px rgba(108, 117, 125, 0.3);
+        }
+
+        .secondary-btn:hover {
+            background-color: #5a6268;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(108, 117, 125, 0.5);
+        }
+
+        /* General Sections */
+        .section {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .section p.description {
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        .bg-light {
+            background-color: var(--text-light);
+        }
+
+        /* How It Works */
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .step-card {
+            background-color: var(--text-light);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px var(--shadow-light);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            text-align: center;
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px var(--shadow-medium);
+        }
+
+        .step-card .icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            background-color: #e6f2ff;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 0 10px rgba(0, 123, 255, 0.1);
+        }
+
+        .step-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .step-card p {
+            color: var(--secondary-color);
+            line-height: 1.7;
+        }
+
+        /* Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background-color: var(--background-light);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px var(--shadow-light);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px var(--shadow-medium);
+            border-color: var(--primary-color);
+        }
+
+        .feature-card .icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .feature-card p {
+            color: var(--secondary-color);
+        }
+
+        /* Generator Section */
+        .generator-section {
+            background: linear-gradient(to bottom, var(--background-light), #e9ecef);
+        }
+
+        .generator-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .input-area, .output-area, .preview-area {
+            background-color: var(--text-light);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px var(--shadow-light);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-area textarea {
+            width: 100%;
+            min-height: 180px;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            resize: vertical;
+            transition: border-color var(--transition-speed);
+        }
+
+        .input-area textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+        }
+
+        .output-area {
+            min-height: 400px;
+            position: relative;
+        }
+
+        .output-area .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        .output-area .tab-btn {
+            background-color: transparent;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--secondary-color);
+            transition: color var(--transition-speed), border-bottom var(--transition-speed);
+            border-bottom: 3px solid transparent;
+            margin-bottom: -1px; /* To align with border-bottom of tabs */
+        }
+
+        .output-area .tab-btn:hover {
+            color: var(--primary-color);
+        }
+
+        .output-area .tab-btn.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        .code-display {
+            flex-grow: 1;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            background-color: #2b2b2b; /* Dark background for code */
+        }
+
+        .code-display pre {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 20px;
+            overflow: auto;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #f8f8f2; /* Light text for code */
+            white-space: pre-wrap;
+            word-break: break-all;
+            display: none;
+        }
+
+        .code-display pre.active {
+            display: block;
+        }
+
+        .code-display code {
+            font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace; /* Monospace font for code */
+            direction: ltr; /* Ensure code is LTR */
+            text-align: left;
+        }
+
+        .code-display .language-html { color: #e8bf6a; } /* Gold for HTML tags */
+        .code-display .language-css { color: #a4a4f1; } /* Light blue for CSS properties */
+        .code-display .language-javascript { color: #f1e05a; } /* Yellow for JS */
+        .code-display .language-html .tag { color: #e8bf6a; }
+        .code-display .language-html .attr-name { color: #79a6e1; }
+        .code-display .language-html .attr-value { color: #a5c261; }
+        .code-display .language-css .property { color: #a4a4f1; }
+        .code-display .language-css .value { color: #a5c261; }
+        .code-display .language-js .keyword { color: #cc7832; }
+        .code-display .language-js .string { color: #a5c261; }
+        .code-display .language-js .function { color: #ffc66d; }
+        .code-display .comment { color: #7f7f7f; }
+
+        .output-area .secondary-btn {
+            margin-top: 20px;
+            align-self: flex-start; /* Align button to start in RTL */
+        }
+
+        .preview-area {
+            min-height: 400px;
+            text-align: right;
+        }
+
+        .preview-area h3 {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        .preview-area iframe {
+            width: 100%;
+            height: calc(100% - 60px); /* Adjust for h3 height */
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background-color: var(--text-light);
+            box-shadow: inset 0 2px 5px var(--shadow-light);
+        }
+
+        /* Contact Section */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+        }
+
+        .contact-info i {
+            margin-left: 10px;
+            color: var(--primary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            transition: color var(--transition-speed);
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-dark);
+            color: var(--text-light);
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            transition: color var(--transition-speed);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-section h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero-section p {
+                font-size: 1.1rem;
+            }
+
+            .generator-container {
+                grid-template-columns: 1fr;
+            }
+
+            .output-area, .preview-area {
+                min-height: 350px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px; /* Adjust based on header height */
+                left: 0;
+                width: 100%;
+                background-color: var(--text-light);
+                box-shadow: 0 5px 15px var(--shadow-light);
+                padding: 20px 0;
+                border-top: 1px solid var(--border-color);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                text-align: center;
+                margin: 10px 0;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 10px 0;
+            }
+
+            .nav-links a::after {
+                right: 50%;
+                transform: translateX(50%);
+            }
+
+            .burger-menu {
+                display: block;
+            }
+
+            .hero-section {
+                padding: 80px 15px;
+                min-height: 60vh;
+            }
+
+            .hero-section h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-section p {
+                font-size: 1rem;
+            }
+
+            .section {
+                padding: 60px 15px;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+                margin-bottom: 40px;
+            }
+
+            .steps-container, .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .input-area textarea {
+                min-height: 150px;
+            }
+
+            .output-area .tab-btn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+
+            .code-display pre {
+                padding: 15px;
+                font-size: 0.85rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        @media (min-width: 993px) {
+            .generator-container {
+                grid-template-columns: 1fr 1fr; /* Two columns for output and preview */
+                grid-template-areas:
+                    "input input"
+                    "output preview";
+            }
+            .input-area { grid-area: input; }
+            .output-area { grid-area: output; }
+            .preview-area { grid-area: preview; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">بوت كود</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#hero">الرئيسية</a></li>
+                <li><a href="#how-it-works">كيف تعمل</a></li>
+                <li><a href="#features">المميزات</a></li>
+                <li><a href="#generator">مولد الأكواد</a></li>
+                <li><a href="#contact">تواصل معنا</a></li>
+            </ul>
+            <div class="burger-menu" id="burgerMenu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="hero-section">
+            <h1>بوت كود: مستقبلك في توليد الأكواد</h1>
+            <p>حوّل أفكارك البرمجية إلى أكواد حقيقية جاهزة للعمل بضغطة زر واحدة. منصة متكاملة لتحليل الأوصاف وتوليد أكواد نظيفة ومنظمة.</p>
+            <a href="#generator" class="btn primary-btn">ابدأ التوليد الآن</a>
+        </section>
+
+        <section id="how-it-works" class="section">
+            <h2>كيف يعمل بوت كود؟</h2>
+            <div class="steps-container">
+                <div class="step-card">
+                    <i class="fas fa-keyboard icon"></i>
+                    <h3>1. أدخل وصف مشروعك</h3>
+                    <p>اكتب فكرتك أو متطلبات مشروعك البرمجي في صندوق النص المخصص بوضوح ودقة.</p>
+                </div>
+                <div class="step-card">
+                    <i class="fas fa-brain icon"></i>
+                    <h3>2. تحليل وتوليد ذكي</h3>
+                    <p>تقوم منصتنا بتحليل وصفك باستخدام الذكاء الاصطناعي لتوليد الأكواد اللازمة.</p>
+                </div>
+                <div class="step-card">
+                    <i class="fas fa-code icon"></i>
+                    <h3>3. معاينة وتنظيم</h3>
+                    <p>شاهد الأكواد مقسمة إلى ملفات HTML و CSS و JS مع معاينة حية للنتيجة.</p>
+                </div>
+                <div class="step-card">
+                    <i class="fas fa-download icon"></i>
+                    <h3>4. تحميل بضغطة زر</h3>
+                    <p>قم بتنزيل كل الأكواد المنظمة كملف مضغوط جاهز للاستخدام الفوري.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="section bg-light">
+            <h2>مميزات بوت كود الفريدة</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-robot icon"></i>
+                    <h3>توليد أكواد بالذكاء الاصطناعي</h3>
+                    <p>استفد من قوة الذكاء الاصطناعي لتوليد أكواد دقيقة وفعالة لمشاريعك.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-file-code icon"></i>
+                    <h3>تقسيم الأكواد لملفات منظمة</h3>
+                    <p>يتم فصل الأكواد تلقائياً إلى ملفات HTML، CSS، و JavaScript لسهولة الإدارة.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-eye icon"></i>
+                    <h3>معاينة حية فورية</h3>
+                    <p>شاهد كيف سيبدو مشروعك فوراً في نافذة المعاينة التفاعلية.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-cloud-download-alt icon"></i>
+                    <h3>تنزيل الأكواد بضغطة زر</h3>
+                    <p>احصل على حزمة كاملة من الأكواد جاهزة للتنزيل والاستخدام في مشروعك.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-paint-brush icon"></i>
+                    <h3>تصميم واجهة عصري</h3>
+                    <p>تجربة مستخدم سلسة وممتعة مع واجهة عصرية وبديهية.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-sync-alt icon"></i>
+                    <h3>تحديثات مستمرة وتحسينات</h3>
+                    <p>نعمل باستمرار على تحسين المنصة وإضافة مميزات جديدة لتلبية احتياجاتك.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="generator" class="section generator-section">
+            <h2>مولد الأكواد التفاعلي</h2>
+            <p class="description">اكتب وصفاً مفصلاً للمشروع البرمجي الذي تريده أدناه، وسنقوم بتوليد الأكواد لك.</p>
+
+            <div class="generator-container">
+                <div class="input-area">
+                    <textarea id="project-description" placeholder="مثال: أريد صفحة تسجيل دخول بسيطة تحتوي على حقل اسم المستخدم وكلمة المرور وزر تسجيل الدخول. يجب أن تكون ذات تصميم عصري بألوان هادئة." rows="10"></textarea>
+                    <button id="generate-code-btn" class="btn primary-btn">توليد الأكواد</button>
+                </div>
+
+                <div class="output-area">
+                    <div class="tabs">
+                        <button class="tab-btn active" data-tab="html">HTML</button>
+                        <button class="tab-btn" data-tab="css">CSS</button>
+                        <button class="tab-btn" data-tab="js">JavaScript</button>
+                    </div>
+                    <div class="code-display">
+                        <pre><code id="generated-code-html" class="language-html active"></code></pre>
+                        <pre><code id="generated-code-css" class="language-css"></code></pre>
+                        <pre><code id="generated-code-js" class="language-javascript"></code></pre>
+                    </div>
+                    <button id="download-code-btn" class="btn secondary-btn"><i class="fas fa-download"></i> تنزيل الأكواد</button>
+                </div>
+
+                <div class="preview-area">
+                    <h3>معاينة حية</h3>
+                    <iframe id="live-preview" sandbox="allow-scripts allow-same-origin" srcdoc="<p style='font-family: Cairo, sans-serif; text-align: center; margin-top: 50px; color: #555;'>سيظهر هنا معاينة الأكواد التي تم توليدها.</p>"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section bg-light">
+            <h2>تواصل معنا</h2>
+            <p>إذا كان لديك أي استفسارات أو اقتراحات، لا تتردد في التواصل معنا.</p>
+            <div class="contact-info">
+                <p><i class="fas fa-envelope"></i> info@botcode.com</p>
+                <p><i class="fas fa-phone"></i> +966 50 123 4567</p>
+                <div class="social-links">
+                    <a href="https://facebook.com" target="_blank" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com" target="_blank" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
+                    <a href="https://linkedin.com" target="_blank" aria-label="لينكدإن"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2023 بوت كود. جميع الحقوق محفوظة.</p>
+            <ul class="footer-links">
+                <li><a href="#">سياسة الخصوصية</a></li>
+                <li><a href="#">شروط الاستخدام</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const burgerMenu = document.getElementById('burgerMenu');
+            const navLinks = document.getElementById('navLinks');
+            const navLinksList = navLinks.querySelectorAll('a');
+
+            burgerMenu.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            navLinksList.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 70, // Adjust for fixed header height
+                            behavior: 'smooth'
+                        });
+                        navLinks.classList.remove('active'); // Close menu after click
+                    }
+                });
+            });
+
+            // Generator Logic
+            const projectDescriptionInput = document.getElementById('project-description');
+            const generateCodeBtn = document.getElementById('generate-code-btn');
+            const downloadCodeBtn = document.getElementById('download-code-btn');
+            const htmlCodeBlock = document.getElementById('generated-code-html');
+            const cssCodeBlock = document.getElementById('generated-code-css');
+            const jsCodeBlock = document.getElementById('generated-code-js');
+            const livePreview = document.getElementById('live-preview');
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const codeBlocks = document.querySelectorAll('.code-display pre');
+
+            let currentGeneratedHtml = '';
+            let currentGeneratedCss = '';
+            let currentGeneratedJs = '';
+
+            const defaultHtml = `
+                <div style="text-align: center; padding: 30px;">
+                    <h1>مرحباً بك في بوت كود!</h1>
+                    <p>اكتب وصف مشروعك أعلاه لتوليد الأكواد.</p>
+                    <button style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;">زر تجريبي</button>
+                </div>
+            `;
+            const defaultCss = `
+                body {
+                    font-family: 'Cairo', sans-serif;
+                    margin: 0;
+                    background-color: #f0f8ff;
+                    color: #333;
+                    direction: rtl;
+                    text-align: right;
+                }
+                h1 {
+                    color: #0056b3;
+                }
+                p {
+                    font-size: 1.1em;
+                    line-height: 1.6;
+                }
+                button:hover {
+                    background-color: #0056b3 !important;
+                }
+            `;
+            const defaultJs = `
+                document.addEventListener('DOMContentLoaded', () => {
+                    const button = document.querySelector('button');
+                    if (button) {
+                        button.addEventListener('click', () => {
+                            alert('تم النقر على الزر! يمكنك إضافة تفاعلات JavaScript هنا.');
+                        });
+                    }
+                    console.log('مرحباً من JavaScript!');
+                });
+            `;
+
+            function generateCode(description) {
+                let html = ``;
+                let css = ``;
+                let js = ``;
+
+                description = description.toLowerCase();
+
+                // Basic HTML components based on keywords
+                if (description.includes('صفحة تسجيل دخول') || description.includes('تسجيل دخول') || description.includes('login page')) {
+                    html += `
+                        <div class="login-container">
+                            <h2>تسجيل الدخول</h2>
+                            <form>
+                                <div class="form-group">
+                                    <label for="username">اسم المستخدم:</label>
+                                    <input type="text" id="username" name="username" placeholder="أدخل اسم المستخدم" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">كلمة المرور:</label>
+                                    <input type="password" id="password" name="password" placeholder="أدخل كلمة المرور" required>
+                                </div>
+                                <button type="submit" class="submit-btn">تسجيل الدخول</button>
+                            </form>
+                            <p>ليس لديك حساب؟ <a href="#">سجل الآن</a></p>
+                        </div>
+                    `;
+                    css += `
+                        .login-container {
+                            width: 100%;
+                            max-width: 400px;
+                            margin: 50px auto;
+                            padding: 30px;
+                            background-color: #fff;
+                            border-radius: 10px;
+                            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+                            text-align: center;
+                        }
+                        .login-container h2 {
+                            color: #007bff;
+                            margin-bottom: 30px;
+                            font-size: 2em;
+                        }
+                        .form-group {
+                            margin-bottom: 20px;
+                            text-align: right;
+                        }
+                        .form-group label {
+                            display: block;
+                            margin-bottom: 8px;
+                            font-weight: 600;
+                            color: #555;
+                        }
+                        .form-group input[type="text"],
+                        .form-group input[type="password"] {
+                            width: 100%;
+                            padding: 12px 15px;
+                            border: 1px solid #ccc;
+                            border-radius: 8px;
+                            font-size: 1em;
+                            transition: border-color 0.3s ease;
+                            box-sizing: border-box;
+                        }
+                        .form-group input[type="text"]:focus,
+                        .form-group input[type="password"]:focus {
+                            outline: none;
+                            border-color: #007bff;
+                            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+                        }
+                        .submit-btn {
+                            width: 100%;
+                            padding: 12px 20px;
+                            background-color: #28a745;
+                            color: white;
+                            border: none;
+                            border-radius: 8px;
+                            font-size: 1.1em;
+                            cursor: pointer;
+                            transition: background-color 0.3s ease, transform 0.3s ease;
+                            margin-top: 10px;
+                        }
+                        .submit-btn:hover {
+                            background-color: #218838;
+                            transform: translateY(-2px);
+                        }
+                        .login-container p {
+                            margin-top: 25px;
+                            color: #666;
+                        }
+                        .login-container p a {
+                            color: #007bff;
+                            text-decoration: none;
+                            font-weight: 600;
+                        }
+                        .login-container p a:hover {
+                            text-decoration: underline;
+                        }
+                    `;
+                    js += `
+                        document.querySelector('.submit-btn').addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const username = document.getElementById('username').value;
+                            const password = document.getElementById('password').value;
+                            if (username && password) {
+                                alert('تم محاولة تسجيل الدخول باسم: ' + username);
+                                // هنا يمكنك إضافة منطق إرسال البيانات إلى الخادم
+                            } else {
+                                alert('الرجاء إدخال اسم المستخدم وكلمة المرور.');
+                            }
+                        });
+                    `;
+                } else if (description.includes('زر') || description.includes('button')) {
+                    html += `
+                        <div style="text-align: center; padding: 30px;">
+                            <button class="generated-button">زر تم توليده</button>
+                            <button class="generated-button secondary">زر ثانوي</button>
+                        </div>
+                    `;
+                    css += `
+                        .generated-button {
+                            background-color: #007bff;
+                            color: white;
+                            padding: 12px 25px;
+                            border: none;
+                            border-radius: 7px;
+                            font-size: 1.1em;
+                            cursor: pointer;
+                            margin: 10px;
+                            transition: background-color 0.3s ease, transform 0.3s ease;
+                        }
+                        .generated-button:hover {
+                            background-color: #0056b3;
+                            transform: translateY(-2px);
+                        }
+                        .generated-button.secondary {
+                            background-color: #6c757d;
+                        }
+                        .generated-button.secondary:hover {
+                            background-color: #5a6268;
+                        }
+                    `;
+                    js += `
+                        document.querySelectorAll('.generated-button').forEach(button => {
+                            button.addEventListener('click', () => {
+                                alert('لقد نقرت على الزر: ' + button.textContent);
+                            });
+                        });
+                    `;
+                } else if (description.includes('نموذج اتصال') || description.includes('contact form')) {
+                    html += `
+                        <div class="contact-form-container">
+                            <h2>تواصل معنا</h2>
+                            <form>
+                                <div class="form-group">
+                                    <label for="name">الاسم:</label>
+                                    <input type="text" id="name" name="name" required placeholder="أدخل اسمك الكامل">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">البريد الإلكتروني:</label>
+                                    <input type="email" id="email" name="email" required placeholder="أدخل بريدك الإلكتروني">
+                                </div>
+                                <div class="form-group">
+                                    <label for="message">الرسالة:</label>
+                                    <textarea id="message" name="message" rows="5" required placeholder="اكتب رسالتك هنا"></textarea>
+                                </div>
+                                <button type="submit" class="submit-btn">إرسال الرسالة</button>
+                            </form>
+                        </div>
+                    `;
+                    css += `
+                        .contact-form-container {
+                            width: 100%;
+                            max-width: 600px;
+                            margin: 50px auto;
+                            padding: 30px;
+                            background-color: #fff;
+                            border-radius: 10px;
+                            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+                            text-align: right;
+                        }
+                        .contact-form-container h2 {
+                            color: #007bff;
+                            margin-bottom: 30px;
+                            font-size: 2em;
+                            text-align: center;
+                        }
+                        .form-group {
+                            margin-bottom: 20px;
+                        }
+                        .form-group label {
+                            display: block;
+                            margin-bottom: 8px;
+                            font-weight: 600;
+                            color: #555;
+                        }
+                        .form-group input[type="text"],
+                        .form-group input[type="email"],
+                        .form-group textarea {
+                            width: 100%;
+                            padding: 12px 15px;
+                            border: 1px solid #ccc;
+                            border-radius: 8px;
+                            font-size: 1em;
+                            transition: border-color 0.3s ease;
+                            box-sizing: border-box;
+                            font-family: 'Cairo', sans-serif;
+                        }
+                        .form-group input:focus,
+                        .form-group textarea:focus {
+                            outline: none;
+                            border-color: #007bff;
+                            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+                        }
+                        .submit-btn {
+                            width: 100%;
+                            padding: 12px 20px;
+                            background-color: #28a745;
+                            color: white;
+                            border: none;
+                            border-radius: 8px;
+                            font-size: 1.1em;
+                            cursor: pointer;
+                            transition: background-color 0.3s ease, transform 0.3s ease;
+                            margin-top: 10px;
+                        }
+                        .submit-btn:hover {
+                            background-color: #218838;
+                            transform: translateY(-2px);
+                        }
+                    `;
+                    js += `
+                        document.querySelector('.contact-form-container form').addEventListener('submit', (e) => {
+                            e.preventDefault();
+                            const name = document.getElementById('name').value;
+                            const email = document.getElementById('email').value;
+                            const message = document.getElementById('message').value;
+                            if (name && email && message) {
+                                alert('شكراً لك يا ' + name + '! تم استلام رسالتك.');
+                                // هنا يمكنك إضافة منطق إرسال البيانات إلى الخادم
+                            } else {
+                                alert('الرجاء تعبئة جميع الحقول.');
+                            }
+                        });
+                    `;
+                }
+                else {
+                    // Default placeholder if no specific keywords match
+                    html = defaultHtml;
+                    css = defaultCss;
+                    js = defaultJs;
+                }
+
+                // Add general styling and ensure RTL in preview
+                const baseCss = `
+                    body {
+                        font-family: 'Cairo', sans-serif;
+                        direction: rtl;
+                        text-align: right;
+                        margin: 0;
+                        padding: 0;
+                        box-sizing: border-box;
+                        background-color: #f8f9fa;
+                        color: #343a40;
+                    }
+                    h1, h2, h3, h4, h5, h6 {
+                        color: #007bff;
+                    }
+                    a {
+                        text-decoration: none;
+                        color: #007bff;
+                    }
+                    a:hover {
+                        text-decoration: underline;
+                    }
+                    /* Add a default button style if no specific button is generated */
+                    button {
+                        padding: 10px 20px;
+                        border-radius: 5px;
+                        border: none;
+                        background-color: #007bff;
+                        color: white;
+                        cursor: pointer;
+                        transition: background-color 0.3s ease;
+                    }
+                    button:hover {
+                        background-color: #0056b3;
+                    }
+                `;
+
+                currentGeneratedHtml = html;
+                currentGeneratedCss = baseCss + css;
+                currentGeneratedJs = js;
+
+                htmlCodeBlock.textContent = currentGeneratedHtml.trim();
+                cssCodeBlock.textContent = currentGeneratedCss.trim();
+                jsCodeBlock.textContent = currentGeneratedJs.trim();
+                updateLivePreview();
+            }
+
+            function updateLivePreview() {
+                const previewContent = `
+                    <!DOCTYPE html>
+                    <html lang="ar" dir="rtl">
+                    <head>
+                        <meta charset="UTF-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        <title>معاينة بوت كود</title>
+                        <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+                        <style>${currentGeneratedCss}</style>
+                    </head>
+                    <body>
+                        ${currentGeneratedHtml}
+                        <script>${currentGeneratedJs}</script>
+                    </body>
+                    </html>
+                `;
+                livePreview.srcdoc = previewContent;
+            }
+
+            generateCode(''); // Generate default code on load
+
+            generateCodeBtn.addEventListener('click', () => {
+                const description = projectDescriptionInput.value.trim();
+                generateCode(description);
+            });
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tab = button.dataset.tab;
+
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    codeBlocks.forEach(block => block.classList.remove('active'));
+                    document.getElementById(`generated-code-${tab}`).classList.add('active');
+                });
+            });
+
+            downloadCodeBtn.addEventListener('click', () => {
+                const fullHtmlContent = `
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مشروع بوت كود</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+${currentGeneratedCss}
+    </style>
+</head>
+<body>
+${currentGeneratedHtml}
+    <script>
+${currentGeneratedJs}
+    </script>
+</body>
+</html>
+                `;
+
+                const blob = new Blob([fullHtmlContent], { type: 'text/html;charset=utf-8' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'project.html';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                alert('تم تنزيل ملف project.html بنجاح!');
+            });
+        });
+    </script>
+</body>
+</html>
