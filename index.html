@@ -3,117 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>اي شيء - منصة إدارة أوامر ومشاريع الذكاء الاصطناعي</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>وزارة التربية والتعليم والتعليم الفني - مصر</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
-            --primary-color: #6a0572;
-            --secondary-color: #8e2de2;
-            --accent-color: #00bcd4;
-            --text-color: #333;
-            --light-text-color: #f4f4f4;
-            --bg-light: #fdfdff;
-            --bg-dark: #2c3e50;
-            --card-bg: #ffffff;
-            --border-color: #e0e0e0;
-            --shadow-light: rgba(0, 0, 0, 0.08);
-            --shadow-medium: rgba(0, 0, 0, 0.15);
-            --transition-speed: 0.3s;
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --accent-color: #28a745;
+            --light-bg: #f8f9fa;
+            --dark-text: #343a40;
+            --light-text: #ffffff;
+            --border-color: #dee2e6;
+            --shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            --transition-speed: 0.3s ease;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Tajawal', sans-serif; line-height: 1.6; color: var(--text-color); background-color: var(--bg-light); direction: rtl; text-align: right; scroll-behavior: smooth; }
-        a { text-decoration: none; color: var(--primary-color); transition: color var(--transition-speed) ease; }
-        a:hover { color: var(--secondary-color); }
+        body { font-family: 'Cairo', sans-serif; line-height: 1.6; color: var(--dark-text); background-color: var(--light-bg); direction: rtl; text-align: right; }
+        a { text-decoration: none; color: var(--primary-color); transition: color var(--transition-speed); }
         ul { list-style: none; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
-        .header { background-color: var(--card-bg); padding: 1rem 0; box-shadow: 0 2px 10px var(--shadow-light); position: sticky; top: 0; z-index: 1000; }
-        .navbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
-        .logo { font-size: 1.8rem; font-weight: 700; color: var(--primary-color); padding: 0.5rem 0; }
-        .nav-links { display: flex; gap: 1.5rem; }
-        .nav-links li a { color: var(--text-color); font-weight: 400; padding: 0.5rem 0; position: relative; }
-        .auth-buttons { display: flex; gap: 1rem; }
-        .btn { padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 700; cursor: pointer; transition: all var(--transition-speed) ease; text-align: center; border: none; display: inline-block; }
-        .btn-primary { background-color: var(--primary-color); color: var(--light-text-color); box-shadow: 0 4px 15px rgba(106, 5, 114, 0.3); }
-        .btn-primary:hover { background-color: var(--secondary-color); transform: translateY(-2px); color: var(--light-text-color); }
-        .btn-secondary { background-color: transparent; color: var(--primary-color); border: 2px solid var(--primary-color); }
-        .btn-secondary:hover { background-color: var(--primary-color); color: var(--light-text-color); transform: translateY(-2px); }
-        .menu-toggle { display: none; font-size: 1.8rem; color: var(--primary-color); cursor: pointer; }
-        .hero { background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%); color: var(--light-text-color); padding: 6rem 0; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 70vh; position: relative; overflow: hidden; }
-        .hero-content { z-index: 1; max-width: 800px; }
-        .hero h1 { font-size: 3.5rem; margin-bottom: 1.5rem; line-height: 1.2; font-weight: 700; }
-        .hero p { font-size: 1.4rem; margin-bottom: 2.5rem; opacity: 0.9; font-weight: 300; }
-        section { padding: 5rem 0; }
-        .section-title { font-size: 2.5rem; text-align: center; margin-bottom: 3rem; color: var(--primary-color); position: relative; padding-bottom: 15px; }
-        .section-title::after { content: ''; position: absolute; bottom: 0; right: 50%; transform: translateX(50%); width: 80px; height: 4px; background-color: var(--accent-color); border-radius: 2px; }
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-        .feature-card { background-color: var(--card-bg); border-radius: 12px; padding: 2.5rem; box-shadow: 0 5px 20px var(--shadow-light); text-align: center; transition: transform var(--transition-speed) ease; }
-        .feature-card:hover { transform: translateY(-10px); }
-        .feature-card .icon { font-size: 3.5rem; color: var(--primary-color); margin-bottom: 1.5rem; }
-        .workflow { background-color: var(--bg-light); padding: 5rem 0; }
-        .workflow-steps { display: flex; flex-direction: column; gap: 3rem; }
-        .workflow-step { display: flex; align-items: center; justify-content: flex-end; position: relative; padding-right: 70px; text-align: right; }
-        .workflow-step-content { background-color: var(--card-bg); border-radius: 12px; padding: 2rem; box-shadow: 0 5px 15px var(--shadow-light); width: 100%; max-width: 45%; }
-        .footer { background-color: var(--bg-dark); color: var(--light-text-color); padding: 4rem 0; text-align: center; }
-        .footer-content { display: flex; flex-direction: column; align-items: center; gap: 2rem; }
-        .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; }
-        .footer-links li a { color: var(--light-text-color); opacity: 0.8; }
-        .social-icons { display: flex; gap: 1.5rem; }
-        .social-icons a { color: var(--light-text-color); font-size: 1.5rem; }
+        header { background-color: var(--light-text); box-shadow: var(--shadow); position: sticky; top: 0; z-index: 1000; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 15px; max-width: 1200px; margin: 0 auto; }
+        .logo { font-size: 1.8rem; font-weight: 700; color: var(--primary-color); white-space: nowrap; }
+        .nav-links { display: flex; gap: 25px; }
+        .nav-links a { color: var(--dark-text); font-weight: 600; padding: 5px 0; }
+        .auth-buttons button { background-color: var(--primary-color); color: var(--light-text); border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: 600; }
+        .hero-section { background: linear-gradient(rgba(0, 123, 255, 0.8), rgba(0, 123, 255, 0.6)), url('https://images.unsplash.com/photo-1546410531-bb4ffa7d605c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1200') no-repeat center center/cover; color: var(--light-text); text-align: center; padding: 80px 20px; min-height: 400px; }
+        .hero-section h1 { font-size: 3.5rem; margin-bottom: 20px; font-weight: 700; }
+        .hero-section p { font-size: 1.3rem; max-width: 800px; margin: 0 auto 30px auto; }
+        .section-padded { padding: 80px 0; text-align: center; }
+        .section-padded.bg-light { background-color: var(--light-bg); }
+        .section-padded h2 { font-size: 2.5rem; margin-bottom: 50px; color: var(--primary-color); }
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto; }
+        .card { background-color: var(--light-text); border-radius: 10px; box-shadow: var(--shadow); padding: 30px; text-align: center; display: flex; flex-direction: column; justify-content: space-between; }
+        .card i { font-size: 3rem; color: var(--primary-color); margin-bottom: 20px; }
+        .card h3 { font-size: 1.5rem; margin-bottom: 15px; color: var(--dark-text); }
+        .card p { font-size: 1rem; color: var(--secondary-color); margin-bottom: 20px; flex-grow: 1; }
+        .btn-secondary { display: inline-block; background-color: var(--accent-color); color: var(--light-text); padding: 10px 20px; border-radius: 5px; font-weight: 600; }
+        
+        /* Modal Styles */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); justify-content: center; align-items: center; }
+        .modal-content { background-color: #fff; padding: 30px; border-radius: 10px; width: 100%; max-width: 400px; position: relative; text-align: right; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .close-btn { position: absolute; top: 15px; left: 20px; font-size: 24px; cursor: pointer; color: #aaa; }
+        .close-btn:hover { color: #000; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: 600; }
+        .form-group input { width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 5px; font-family: 'Cairo', sans-serif; }
+        
+        /* Admin Panel Styles */
+        #adminPanel { display: none; background: #fff3cd; border: 1px solid #ffeeba; padding: 20px; margin: 20px auto; max-width: 1200px; border-radius: 8px; text-align: right; }
+        #adminPanel h3 { color: #856404; margin-bottom: 10px; }
+
+        footer { background-color: var(--dark-text); color: var(--light-text); padding: 40px 0; text-align: center; font-size: 0.9rem; }
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <nav class="navbar">
-                <a href="#" class="logo">اي شيء</a>
-                <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
-                <ul class="nav-links" id="nav-menu">
-                    <li><a href="#features">بنك الأوامر</a></li>
-                    <li><a href="#workflow">المشاريع</a></li>
-                    <li><a href="#features">المساعد</a></li>
-                    <li><a href="#community">المجتمع</a></li>
-                </ul>
-                <div class="auth-buttons" id="auth-btns">
-                    <a href="#features" class="btn btn-secondary">تسجيل الدخول</a>
-                    <a href="#features" class="btn btn-primary">ابدأ مجاناً</a>
-                </div>
-            </nav>
-        </div>
+    <header>
+        <nav class="container">
+            <div class="logo">وزارة التربية والتعليم والتعليم الفني</div>
+            <ul class="nav-links">
+                <li><a href="#hero">الرئيسية</a></li>
+                <li><a href="#platforms">منصات التعلم</a></li>
+                <li><a href="#services">الخدمات الإلكترونية</a></li>
+                <li><a href="#contact">اتصل بنا</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <button id="loginBtn">تسجيل الدخول</button>
+            </div>
+        </nav>
     </header>
+
+    <!-- لوحة تحكم الأدمن الظاهرة فقط عند تسجيل الدخول بحساب admin -->
+    <div id="adminPanel" class="container">
+        <h3><i class="fas.fa-shield-alt"></i> لوحة التحكم الخاصة بالمسؤول (Admin Panel)</h3>
+        <p>أهلاً بك يا <strong>admin</strong>. تمتلك الآن صلاحيات كاملة لإدارة محتوى الموقع والتحكم بالخدمات.</p>
+        <button id="logoutBtn" style="background: #dc3545; color: #fff; border: none; padding: 5px 15px; border-radius: 4px; margin-top: 10px; cursor: pointer;">تسجيل الخروج</button>
+    </div>
+
     <main>
-        <section class="hero">
-            <div class="container hero-content">
-                <h1>منصتك المتكاملة لإدارة أوامر ومشاريع الذكاء الاصطناعي</h1>
-                <p>ابتكر، اختبر، وشارك أوامرك الاحترافية وادمجها في مشاريع عملية بسلاسة وفعالية.</p>
-                <a href="#features" class="btn btn-primary">ابدأ الآن مجاناً</a>
-            </div>
+        <section id="hero" class="hero-section">
+            <h1>مستقبل التعليم يبدأ من هنا</h1>
+            <p>البوابة الرسمية لوزارة التربية والتعليم والتعليم الفني في مصر، وجهتك الشاملة لجميع الخدمات التعليمية الرقمية.</p>
+            <a href="#platforms" class="btn-secondary" style="background-color: var(--accent-color); padding: 15px 30px; font-size: 1.1rem;">استكشف خدماتنا الآن</a>
         </section>
-        <section id="features" class="features">
+
+        <section id="platforms" class="section-padded bg-light">
             <div class="container">
-                <h2 class="section-title">ميزاتنا الأساسية</h2>
-                <div class="features-grid">
-                    <div class="feature-card"><i class="fas fa-brain icon"></i><h3>بنك الأوامر الذكي</h3><p>مكتبة ضخمة من الأوامر الاحترافية المصنفة.</p><a href="#features" class="btn btn-primary">تصفح الأوامر</a></div>
-                    <div class="feature-card"><i class="fas fa-project-diagram icon"></i><h3>مساحة عمل المشاريع</h3><p>بيئة مخصصة لتنظيم العمل والمشاريع.</p><a href="#workflow" class="btn btn-primary">إنشاء مشروع</a></div>
-                    <div class="feature-card"><i class="fas fa-robot icon"></i><h3>مساعد هندسة الأوامر</h3><p>صياغة أمر دقيق ومحترف.</p><a href="#features" class="btn btn-primary">ابدأ الصياغة</a></div>
-                    <div class="feature-card" id="community"><i class="fas fa-users icon"></i><h3>المجتمع والمشاركة</h3><p>تواصل مع الخبراء وشارك إبداعاتك.</p><a href="#features" class="btn btn-primary">انضم للمجتمع</a></div>
-                </div>
-            </div>
-        </section>
-        <section id="workflow" class="workflow">
-            <div class="container">
-                <h2 class="section-title">كيف تعمل منصة اي شيء؟</h2>
-                <div class="workflow-steps">
-                    <div class="workflow-step"><div class="workflow-step-content"><h3>بدء المشروع</h3><p>أنشئ مشروعاً جديداً وحدد هدفه.</p></div></div>
+                <h2>منصات التعلم الإلكتروني</h2>
+                <div class="grid-container">
+                    <div class="card">
+                        <i class="fas fa-school"></i>
+                        <h3>منصة مدرستنا</h3>
+                        <p>رحلة تعليمية متكاملة توفر شروحات ومراجعات للمناهج الدراسية لجميع المراحل.</p>
+                        <a href="#" class="btn-secondary">اذهب للمنصة</a>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-broadcast-tower"></i>
+                        <h3>منصة البث المباشر</h3>
+                        <p>دروس تفاعلية مباشرة مع نخبة من المعلمين المتخصصين لتعزيز الفهم والاستيعاب.</p>
+                        <a href="#" class="btn-secondary">شاهد البث</a>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-book-open"></i>
+                        <h3>المكتبة الإلكترونية</h3>
+                        <p>مكتبة ضخمة من الكتب والمراجع الرقمية والمواد التعليمية المثرية.</p>
+                        <a href="#" class="btn-secondary">تصفح المكتبة</a>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
-    <footer class="footer">
-        <div class="container footer-content">
-            <a href="#" class="logo">اي شيء</a>
-            <p>&copy; 2026 اي شيء. جميع الحقوق محفوظة.</p>
+
+    <!-- نافذة تسجيل الدخول المنبثقة -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2 style="margin-bottom: 20px; color: var(--primary-color);">تسجيل الدخول</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">البريد الإلكتروني أو اسم المستخدم:</label>
+                    <input type="text" id="username" required placeholder="أدخل اسم المستخدم أو الجيميل">
+                </div>
+                <div class="form-group">
+                    <label for="password">كلمة المرور:</label>
+                    <input type="password" id="password" required placeholder="أدخل كلمة المرور">
+                </div>
+                <button type="submit" style="width: 100%; background: var(--primary-color); color: #fff; border: none; padding: 10px; border-radius: 5px; font-weight: bold; cursor: pointer;">دخول</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 وزارة التربية والتعليم والتعليم الفني. جميع الحقوق محفوظة.</p>
         </div>
     </footer>
+
+    <script>
+        const loginBtn = document.getElementById('loginBtn');
+        const loginModal = document.getElementById('loginModal');
+        const closeBtn = document.querySelector('.close-btn');
+        const loginForm = document.getElementById('loginForm');
+        const adminPanel = document.getElementById('adminPanel');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        // فتح نافذة الدخول
+        loginBtn.addEventListener('click', () => {
+            loginModal.style.display = 'flex';
+        });
+
+        // إغلاق نافذة الدخول
+        closeBtn.addEventListener('click', () => {
+            loginModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                loginModal.style.display = 'none';
+            }
+        });
+
+        // التحقق من بيانات الدخول (الأدمن: admin / zoroking)
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const user = document.getElementById('username').value.trim();
+            const pass = document.getElementById('password').value.trim();
+
+            if (user === 'admin' && pass === 'zoroking') {
+                alert('تم تسجيل الدخول بنجاح بصلاحيات المسؤول الكاملة!');
+                loginModal.style.display = 'none';
+                adminPanel.style.display = 'block';
+                loginBtn.style.display = 'none';
+            } else {
+                alert('بيانات الدخول غير صحيحة. (حساب الأدمن هو: admin / zoroking)');
+            }
+        });
+
+        // تسجيل الخروج
+        logoutBtn.addEventListener('click', () => {
+            adminPanel.style.display = 'none';
+            loginBtn.style.display = 'inline-block';
+            alert('تم تسجيل الخروج بنجاح.');
+        });
+    </script>
 </body>
-</html>
+    </html>
+    
